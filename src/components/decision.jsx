@@ -82,85 +82,99 @@ class Decision extends Component {
                 className="btn btn-dark"
                 onClick={this.decisionEachExtend}
               >
-                <div className="row">
-                  <span className="col-sm-1 ml-5 text-warning">
-                    {this.props.decision.point}
-                  </span>
-                  <div className="col-sm-8 pr-5 ml-5">
-                    {this.props.decision.tag}
-                  </div>
-                  <button
-                    onClick={() =>
-                      this.props.onDeleteADecision(
-                        this.props.decision.decisionId
-                      )
-                    }
-                    type="button"
-                    className="close ml-5 pl-5 text-secondary"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
+                {/* <span className="text-warning">
+                  {this.props.decision.point}
+                </span> */}
+                {this.props.decision.tag}
+                <button
+                  onClick={() =>
+                    this.props.onDeleteADecision(this.props.decision.decisionId)
+                  }
+                  type="button"
+                  className="close text-secondary"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </button>
               <div id="prosAndCons" className={this.state.prosAndConsClass}>
                 <div className="row">
-                  <div className="col-sm-6">
+                  <div className="col-6 pr-1">
                     <div className="card">
                       <h5 className="card-title text-success">Pros</h5>
 
                       <div>
-                        {this.props.decision.pros.map(pros => (
-                          <Pros
-                            key={pros.prosId}
-                            prosDescription={pros.prosDescription}
-                            pros={pros}
-                            onDeleteAPros={this.props.onDeleteAPros}
-                            decision={this.props.decision}
-                          ></Pros>
-                        ))}
+                        <dl id="prosUl">
+                          {this.props.decision.pros.map(pros => (
+                            <Pros
+                              key={pros.prosId}
+                              prosDescription={pros.prosDescription}
+                              pros={pros}
+                              onDeleteAPros={this.props.onDeleteAPros}
+                              decision={this.props.decision}
+                            ></Pros>
+                          ))}
+                        </dl>
                       </div>
 
                       <div id="pros" className={this.props.addAdvantageClass}>
                         <form onSubmit={this.handleProsCreation}>
                           <div className="form-group">
-                            <div className="row">
-                              <div className="col-sm-10">
-                                <label className="ml-4" htmlFor="prosDesc">
-                                  Enter a positive factor about your decision,
-                                  than give it a point
-                                </label>
-                                <input
-                                  onChange={
-                                    this.handleChangeOfProsDescriptionInput
-                                  }
-                                  value={this.state.prosDescription}
-                                  type="text"
-                                  id="prosDesc"
-                                  className="form-control ml-4"
-                                  placeholder="positive value"
-                                />
+                            <div className="row m-1">
+                              <div className="col">
+                                <div className="row-8">
+                                  <label htmlFor="prosDesc">
+                                    Enter a positive factor about your decision,
+                                    than give it a point
+                                  </label>
+                                  <div className="row justify-content-md-center">
+                                    <div className="col-9">
+                                      <input
+                                        onChange={
+                                          this
+                                            .handleChangeOfProsDescriptionInput
+                                        }
+                                        value={this.state.prosDescription}
+                                        type="text"
+                                        id="prosDesc"
+                                        className="form-control"
+                                        placeholder="positive value"
+                                      />
+                                    </div>
+                                    <div className="col-2">
+                                      <select
+                                        value={this.state.prosSelectValue}
+                                        onChange={
+                                          this.handleChangeOfProsSelectValue
+                                        }
+                                        id="prosDrop"
+                                        className="p-1"
+                                      >
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="row mt-3 ml-3">
+                                  <div className="col">
+                                    <button
+                                      className="btn btn-info mt-1"
+                                      type="submit"
+                                    >
+                                      Save
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
-                              <select
-                                value={this.state.prosSelectValue}
-                                onChange={this.handleChangeOfProsSelectValue}
-                                id="prosDrop"
-                                className="mt-5 ml-3"
-                              >
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                              </select>
                             </div>
-                            <button className="btn btn-info mt-1" type="submit">
-                              Save
-                            </button>
                           </div>
                         </form>
                       </div>
@@ -173,20 +187,22 @@ class Decision extends Component {
                       </button>
                     </div>
                   </div>
-                  <div className="col pl-0">
+                  <div className="col pl-1">
                     <div className="card">
                       <h5 className="card-title text-danger">Cons</h5>
 
                       <div>
-                        {this.props.decision.cons.map(cons => (
-                          <Cons
-                            key={cons.consId}
-                            consDescription={cons.consDescription}
-                            cons={cons}
-                            onDeleteACons={this.props.onDeleteACons}
-                            decision={this.props.decision}
-                          ></Cons>
-                        ))}
+                        <dl id="consDl">
+                          {this.props.decision.cons.map(cons => (
+                            <Cons
+                              key={cons.consId}
+                              consDescription={cons.consDescription}
+                              cons={cons}
+                              onDeleteACons={this.props.onDeleteACons}
+                              decision={this.props.decision}
+                            ></Cons>
+                          ))}
+                        </dl>
                       </div>
 
                       <div
@@ -195,43 +211,62 @@ class Decision extends Component {
                       >
                         <form onSubmit={this.handleConsCreation}>
                           <div className="form-group">
-                            <div className="row">
-                              <div className="col-sm-10">
-                                <label className="ml-4" htmlFor="prosDesc">
-                                  Enter a negative factor about your decision,
-                                  than give it a point
-                                </label>
-                                <input
-                                  onChange={
-                                    this.handleChangeOfConsDescriptionInput
-                                  }
-                                  value={this.state.consDescription}
-                                  type="text"
-                                  id="prosDesc"
-                                  className="form-control ml-4"
-                                  placeholder="negative value"
-                                />
+                            <div className="row m-1">
+                              <div className="col">
+                                <div className="row-8">
+                                  <label htmlFor="consDesc">
+                                    Enter a negative factor about your decision,
+                                    than give it a point
+                                  </label>
+
+                                  <div className="row justify-content-md-center">
+                                    <div className="col-9">
+                                      <input
+                                        onChange={
+                                          this
+                                            .handleChangeOfConsDescriptionInput
+                                        }
+                                        value={this.state.consDescription}
+                                        type="text"
+                                        id="consDesc"
+                                        className="form-control"
+                                        placeholder="negative value"
+                                      />
+                                    </div>
+                                    <div className="col-2">
+                                      <select
+                                        value={this.state.consSelectValue}
+                                        onChange={
+                                          this.handleChangeOfConsSelectValue
+                                        }
+                                        id="consDrop"
+                                        className="p-1"
+                                      >
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="row mt-3 ml-3">
+                                  <div className="col">
+                                    <button
+                                      className="btn btn-info mt-1"
+                                      type="submit"
+                                    >
+                                      Save
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
-                              <select
-                                value={this.state.consSelectValue}
-                                onChange={this.handleChangeOfConsSelectValue}
-                                id="consDrop"
-                                className="mt-5 ml-3"
-                              >
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                              </select>
                             </div>
-                            <button className="btn btn-info mt-1" type="submit">
-                              Save
-                            </button>
                           </div>
                         </form>
                       </div>

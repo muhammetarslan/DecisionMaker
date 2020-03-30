@@ -19,7 +19,7 @@
   transition: max-height 0.6s;
 }
 #pros.open {
-  max-height: 140px;
+  max-height: 290px;
   -webkit-transition: max-height 0.6s;
   -moz-transition: max-height 0.6s;
   transition: max-height 0.6s;
@@ -32,7 +32,7 @@
   transition: max-height 0.6s;
 }
 #cons.open {
-  max-height: 140px;
+  max-height: 290px;
   -webkit-transition: max-height 0.6s;
   -moz-transition: max-height 0.6s;
   transition: max-height 0.6s;

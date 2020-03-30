@@ -6,27 +6,7 @@ import NegativeResults from "./components/negativeResults";
 
 class App extends Component {
   state = {
-    decisions: [
-      {
-        decisionId: 2,
-        tag: "sample decision",
-        point: 3,
-        pros: [
-          {
-            prosId: 1,
-            prosDescription: "a positive example",
-            point: 2
-          }
-        ],
-        cons: [
-          {
-            consId: 1,
-            consDescription: "a negative example",
-            point: 3
-          }
-        ]
-      }
-    ],
+    decisions: [],
     addAdvantageClass: "",
     advantageButtonInnerHtml: "Add an advantage",
     addDisadvantageClass: "",
@@ -290,9 +270,9 @@ class App extends Component {
 
           <div>
             <div className="row">
-              <div className="col-sm-6 text-center">
+              <div className="col-6 pr-0 text-center">
                 <button id="decisionTitle" className="btn btn-block btn-light">
-                  Compare(will be added soon)
+                  Compare(X)
                 </button>
               </div>
               <div className="col text-center pl-0">
@@ -307,7 +287,7 @@ class App extends Component {
             </div>
 
             <div id="resultTables" className={this.state.resultsClass}>
-              <table className="table m-5">
+              <table className="table">
                 <thead>
                   <tr>
                     <th scope="col"></th>
@@ -322,7 +302,7 @@ class App extends Component {
                   />
                 </tbody>
               </table>
-              <table className="table ml-5 mr-5">
+              <table className="table">
                 <thead className="thead-secondary">
                   <tr>
                     <th scope="col"></th>
